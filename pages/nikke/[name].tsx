@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   CurrencyDollarIcon,
   GlobeAmericasIcon,
@@ -91,7 +90,7 @@ const Nikke = () => {
 
   const { data: nikke, isLoading } = useSingleNikkeQuery(name ? name : "");
 
-  if (isLoading) {
+  if (isLoading && !nikke) {
     return <span>Loading...</span>;
   }
 
@@ -103,10 +102,10 @@ const Nikke = () => {
             <div className="lg:col-span-5 lg:col-start-8">
               <div className="flex justify-between">
                 <h1 className="text-xl font-medium text-gray-900">
-                  {nikke.name}
+                  {nikke?.name}
                 </h1>
                 <p className="text-xl font-medium text-gray-900">
-                  {nikke.rarity}
+                  {nikke?.rarity}
                 </p>
               </div>
             </div>
@@ -116,32 +115,27 @@ const Nikke = () => {
               <h2 className="sr-only">Images</h2>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
-                {product.images.map((image) => (
-                  <img
-                    key={image.id}
-                    src={image.imageSrc}
-                    alt={image.imageAlt}
-                    className={classNames(
-                      image.primary
-                        ? "lg:col-span-2 lg:row-span-2"
-                        : "hidden lg:block",
-                      "rounded-lg"
-                    )}
-                  />
-                ))}
+                <img
+                  src={nikke?.image}
+                  alt=""
+                  className={classNames(
+                    nikke?.image
+                      ? "lg:col-span-2 lg:row-span-2"
+                      : "hidden lg:block",
+                    "rounded-lg"
+                  )}
+                />
               </div>
             </div>
 
             <div className="mt-8 lg:col-span-5">
               {/* Nikke details */}
               <div className="mt-10">
-                <h2 className="text-sm font-medium text-gray-900">
-                  Description
-                </h2>
+                <h2 className="text-sm font-medium text-gray-900">Backstory</h2>
 
                 <div
                   className="prose prose-sm mt-4 text-gray-500"
-                  dangerouslySetInnerHTML={{ __html: product.description }}
+                  dangerouslySetInnerHTML={{ __html: nikke?.backstory }}
                 />
               </div>
 

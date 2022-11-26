@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
 import {
   Dialog,
@@ -200,7 +201,6 @@ export default function Home() {
 
   useEffect(() => {
     const subscription = watch((value) => {
-      console.log(value);
       setFilterOptions(value);
     });
     return () => subscription.unsubscribe();
@@ -433,8 +433,8 @@ export default function Home() {
                                     className="flex items-center"
                                   >
                                     <input
+                                      {...register(`${section.id}`)}
                                       id={`${section.id}-${optionIdx}-mobile`}
-                                      name={`${section.id}[]`}
                                       defaultValue={option.value}
                                       type="checkbox"
                                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
@@ -527,19 +527,21 @@ export default function Home() {
                 Nikkes
               </h2>
 
-              <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-3">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-3">
                 {!isLoading &&
+                  nikkes &&
                   nikkes.map((nikke: any) => (
-                    <NikkeCard
-                      key={nikke.id}
-                      id={nikke.id}
-                      name={nikke.name}
-                      rarity={nikke.rarity}
-                      burst={nikke.burst}
-                      code={nikke.code}
-                      weapon={nikke.weapon}
-                      image={nikke.image}
-                    />
+                    <Link key={nikke.id} href={`/nikke/${nikke.name}`}>
+                      <NikkeCard
+                        id={nikke.id}
+                        name={nikke.name}
+                        rarity={nikke.rarity}
+                        burst={nikke.burst}
+                        code={nikke.code}
+                        weapon={nikke.weapon}
+                        image={nikke.image}
+                      />
+                    </Link>
                   ))}
               </div>
             </section>
