@@ -13,13 +13,7 @@ import iconFront from "../public/ele_front_bg.png";
 import rRarityIcon from "../public/r_icon.png";
 import srRarityIcon from "../public/sr_icon.png";
 import ssrRarityIcon from "../public/ssr_icon.png";
-
-function isKeyOfObject<T extends { [prop: string]: any }>(
-  key: string | number | symbol,
-  obj: T
-): key is keyof T {
-  return key in obj;
-}
+import { isKeyOfObject } from "../utils/helpers";
 
 interface INikkeCard {
   id: string;
