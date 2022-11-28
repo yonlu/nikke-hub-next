@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { api } from "../utils/api";
 
 async function fetchNikkes(filters?: any) {
-  const { data } = await axios.get("http://localhost:3000/nikke/");
+  const { data } = await api.get("/nikke/");
   return data;
 }
 

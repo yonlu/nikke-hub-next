@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { api } from "../utils/api";
 
 interface Nikke {
   id: string;
@@ -13,9 +13,7 @@ interface Nikke {
 }
 
 async function fetchSingleNikkeByName(name: string): Promise<Nikke> {
-  return axios
-    .get(`http://localhost:3000/nikke/${name}`)
-    .then((response) => response.data);
+  return api.get(`/nikke/${name}`).then((response) => response.data);
 }
 
 export const useSingleNikkeQuery = (name: string) =>
