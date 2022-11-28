@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { api } from "../utils/api";
 
 async function fetchFilterNikkesByCriteria(filters: any) {
-  const { data } = await axios.get("http://localhost:3000/filter/nikke", {
+  const { data } = await api.get("/filter/nikke", {
     params: {
       rarity: filters?.rarity ? filters.rarity : [],
       burst: filters?.burst ? filters.burst : [],

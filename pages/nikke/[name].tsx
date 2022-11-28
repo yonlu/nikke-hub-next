@@ -135,7 +135,7 @@ const Nikke = () => {
 
                 <div
                   className="prose prose-sm mt-4 text-gray-500"
-                  dangerouslySetInnerHTML={{ __html: nikke?.backstory }}
+                  dangerouslySetInnerHTML={{ __html: nikke?.backstory ?? "" }}
                 />
               </div>
 
