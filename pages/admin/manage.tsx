@@ -11,7 +11,7 @@ export default function Manage() {
   const addNikke = useMutation((newNikke: any) =>
     axios({
       method: "post",
-      url: "http://localhost:3000/nikke/",
+      url: `${process.env.NEXT_PUBLIC_API_URL}/nikke/`,
       data: newNikke,
       headers: { "Content-Type": "multipart/form-data" },
     })
