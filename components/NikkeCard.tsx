@@ -85,21 +85,21 @@ const NikkeCard = ({
         <Image
           src={rRarityIcon}
           alt=""
-          className="object-contain object-center w-16 h-16"
+          className="h-16 w-16 object-contain object-center"
         />
       ),
       SR: (
         <Image
           src={srRarityIcon}
           alt=""
-          className="object-contain object-center w-16 h-16"
+          className="h-16 w-16 object-contain object-center"
         />
       ),
       SSR: (
         <Image
           src={ssrRarityIcon}
           alt=""
-          className="object-contain object-center w-16 h-16"
+          className="h-16 w-16 object-contain object-center"
         />
       ),
     };
@@ -119,13 +119,13 @@ const NikkeCard = ({
   const renderBorder = (rarityType: string) => {
     const borderMapper = {
       R: (
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-blue-700 via-blue-800 to-blue-900 py-2 min-h-1"></div>
+        <div className="min-h-1 absolute inset-x-0 bottom-0 bg-gradient-to-t from-blue-700 via-blue-800 to-blue-900 py-2"></div>
       ),
       SR: (
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-purple-400 via-purple-600 to-purple-800 py-2 min-h-1"></div>
+        <div className="min-h-1 absolute inset-x-0 bottom-0 bg-gradient-to-t from-purple-400 via-purple-600 to-purple-800 py-2"></div>
       ),
       SSR: (
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-yellow-200 via-yellow-300 to-yellow-400 py-2 min-h-1"></div>
+        <div className="min-h-1 absolute inset-x-0 bottom-0 bg-gradient-to-t from-yellow-200 via-yellow-300 to-yellow-400 py-2"></div>
       ),
     };
 
@@ -144,7 +144,7 @@ const NikkeCard = ({
   return (
     <div
       key={id}
-      className="group relative flex flex-col overflow-hidden bg-white h-80 w-full lg:h-full"
+      className="group relative flex h-80 w-full flex-col overflow-hidden lg:h-full"
     >
       <div className="absolute top-5">
         <div className="relative z-10 w-64">
@@ -154,15 +154,15 @@ const NikkeCard = ({
           </div>
         </div>
       </div>
-      <div className="relative bg-transparent group-hover:opacity-75 w-full h-full sm:h-full sm:w-full">
+      <div className="relative h-full w-full bg-transparent group-hover:opacity-75 sm:h-full sm:w-full">
         <Image
           src={iconSlot}
           alt=""
           fill
           priority
-          className="sm:h-full sm:w-96 object-contain object-center"
+          className="object-contain object-center sm:h-full sm:w-96"
         />
-        <div className="w-full h-full lg:h-96">
+        <div className="h-full w-full lg:h-96">
           <Image
             src={image}
             alt=""
@@ -171,20 +171,23 @@ const NikkeCard = ({
             sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 100vw,
               100vw"
-            className="sm:h-full sm:w-full object-cover object-center"
+            className="object-cover object-center sm:h-full sm:w-full"
           />
         </div>
         <div className="absolute bottom-0 left-2 z-10">
           {renderRarityIcon(rarity)}
         </div>
+        <div className="absolute bottom-5 right-4 z-10">
+          <span className="justify-self-end text-white">{name}</span>
+        </div>
         <Image
           src={iconFront}
           alt=""
-          className="absolute left-0 bottom-0 w-full h-1/3 invert opacity-70"
+          className="absolute left-0 bottom-0 h-1/3 w-full opacity-70 invert"
         />
         {renderBorder(rarity)}
       </div>
-      <div className="hidden flex-1 flex-col space-y-2 p-4 border border-gray-200">
+      <div className="hidden flex-1 flex-col space-y-2 border border-gray-200 p-4">
         <h3 className="text-sm font-medium text-gray-900">
           <a href="#">
             <span aria-hidden="true" className="absolute inset-0" />

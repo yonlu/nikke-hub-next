@@ -24,6 +24,7 @@ export default function Manage() {
   );
 
   const { register, handleSubmit, getValues } = useForm();
+
   const onSubmit: SubmitHandler<any> = async (data) => {
     const formData = new FormData();
     const details = {
