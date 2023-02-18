@@ -5,9 +5,15 @@ import {
   MagnifyingGlassIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { useSession, getSession } from "next-auth/react";
+import Link from "next/link";
+
+import { LoginButton } from "./LoginButton";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const { data: session, status } = useSession();
 
   return (
     <div>
@@ -64,12 +70,7 @@ const Navbar = () => {
 
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4">
                   <div className="flow-root">
-                    <a
-                      href="#"
-                      className="-m-2 block p-2 font-medium text-gray-900"
-                    >
-                      Sign in
-                    </a>
+                    <LoginButton />
                   </div>
                   <div className="flow-root">
                     <a
@@ -89,7 +90,7 @@ const Navbar = () => {
       <header className="relative bg-white">
         <nav
           aria-label="Top"
-          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+          className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8"
         >
           <div className="border-b border-gray-200">
             <div className="flex h-16 items-center">
@@ -106,11 +107,11 @@ const Navbar = () => {
               <div className="ml-4 flex lg:ml-0">
                 <a href="#">
                   <span className="sr-only">Your Company</span>
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt=""
-                  />
+                  {/* <img */}
+                  {/*   className="h-8 w-auto" */}
+                  {/*   src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" */}
+                  {/*   alt="" */}
+                  {/* /> */}
                 </a>
               </div>
 
@@ -121,19 +122,17 @@ const Navbar = () => {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    Sign in
-                  </a>
+                  <LoginButton />
                   <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
                   <a
                     href="#"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                    className="text-sm text-gray-700 hover:text-gray-800"
                   >
                     Create account
                   </a>
+                  {status === "authenticated" && (
+                    <Link href="/admin/manage">Admin Page</Link>
+                  )}
                 </div>
 
                 {/* Search */}
